@@ -55,12 +55,12 @@ d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geo
 
         // https://leafletjs.com/examples/choropleth/
         function getColor(depth) {
-            return depth > 500 ? "red" :
-                   depth > 400  ? "orange" :
-                   depth > 300  ? "yellow" :
-                   depth > 200  ? "green" :
-                   depth > 100   ? "blue" :
-                              "violet";
+            return depth > 500 ? "#800026" :
+                   depth > 400  ? "#BD0026" :
+                   depth > 300  ? "#E31A1C" :
+                   depth > 200  ? "#FC4E2A" :
+                   depth > 100   ? "#FD8D3C" :
+                              "#FEB24C";
         }
 
         // var color = "";
@@ -109,14 +109,14 @@ d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geo
     });
   
   // When the layer control is added, insert a div with the class of "legend".
-    info.onAdd = function(map) {
-        var div = L.DomUtil.create('div', 'legend');
-        grades = [0, 100, 200, 300, 400, 500],
-        labels = [];
+    info.onAdd = function() {
+        var div = L.DomUtil.create('div', 'info legend');
+        grades = [0, 100, 200, 300, 400, 500];
+        labels = ["#FEB24C","#FD8D3C","#FC4E2A","#E31A1C","#BD0026","#800026"];
   
         for (var i = 0; i < grades.length; i++) {
             div.innerHTML +=
-                '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
+                '<i style="background:' + labels[i] + '"></i> ' +
                 grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');  
         }
         return div;
